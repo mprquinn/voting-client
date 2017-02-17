@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "2e5bbc4d2b9b8f3b8b1d"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "f0722256da17bb94c512"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -8320,7 +8320,7 @@
 
 	var pair = ['Trainspotting', '28 Days Later'];
 
-	_reactDom2.default.render(_react2.default.createElement(_Voting2.default, { pair: pair }), document.getElementById('app'));
+	_reactDom2.default.render(_react2.default.createElement(_Voting2.default, { pair: pair, hasVoted: '' }), document.getElementById('app'));
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(264); if (makeExportsHot(module, __webpack_require__(172))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
@@ -29993,7 +29993,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(77), RootInstanceProvider = __webpack_require__(85), ReactMount = __webpack_require__(87), React = __webpack_require__(172); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -30006,24 +30006,42 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
-	  displayName: "Voting",
+	  displayName: 'Voting',
 
 	  getPair: function getPair() {
 	    return this.props.pair || [];
 	  },
+	  isDisabled: function isDisabled() {
+	    return !!this.props.hasVoted;
+	  },
+	  hasVotedFor: function hasVotedFor(entry) {
+	    console.log('hello');
+	    return this.props.hasVoted === entry;
+	  },
 	  render: function render() {
+	    var _this = this;
+
 	    return _react2.default.createElement(
-	      "div",
-	      { className: "voting" },
+	      'div',
+	      { className: 'voting' },
 	      this.getPair().map(function (entry) {
 	        return _react2.default.createElement(
-	          "button",
-	          { key: entry },
+	          'button',
+	          { key: entry,
+	            disabled: _this.isDisabled(),
+	            onClick: function onClick() {
+	              return _this.props.vote(entry);
+	            } },
 	          _react2.default.createElement(
-	            "h1",
+	            'h1',
 	            null,
 	            entry
-	          )
+	          ),
+	          _this.hasVotedFor(entry) ? _react2.default.createElement(
+	            'div',
+	            { className: 'label' },
+	            'Voted'
+	          ) : null
 	        );
 	      })
 	    );
