@@ -1,6 +1,14 @@
+var webpack = require('webpack');
+var serverURL = 'http://localhost:8080/'; // Webpack Dev Server
+var proxyURL = 'http://mike.dev'; // Your external HTML server
+var proxy = {
+  '*': proxyURL
+};
+
+
 module.exports = {
   entry: [
-    'webpack-dev-server/client?http://localhost:8080',
+    'webpack-dev-server/client?' + serverURL,
     'webpack/hot/only-dev-server',
     './src/index.jsx'
   ],
@@ -21,6 +29,7 @@ module.exports = {
   },
   devServer: {
     contentBase: './dist',
+    proxy: proxy,
     hot: true
   },
   plugins: [
