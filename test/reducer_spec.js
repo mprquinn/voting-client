@@ -82,6 +82,30 @@ describe('reducer', () => {
         tally: {Trainspotting: 1}
       }
     }));
-  })
+  });
+
+  it('removes hasVoted on SET_STATE if pair changes', () => {
+    const state = fromJS({
+      vote: {
+        pair: ['Trainspotting', '28 Days Later'],
+        tally: {Trainspotting: 1}
+      }
+    });
+    const action = {
+      type: 'SET_STATE',
+      state: {
+        vote: {
+          pair: ['Sunshine', 'Slumdog Millionaire']
+        }
+      }
+    };
+    const nextState = reducer(initialState, action);
+
+    expect(nextState).to.equal(fromJS({
+      vote: {
+        pair: ['Sunshine', 'Slumdog Millionaire']
+      }
+    }));
+  });
 
 });
