@@ -25,7 +25,7 @@ store.dispatch({
 const socket = io(`${location.protocol}//${location.hostname}:8090`);
 
 const routes = <Route component={App}>
-  <Route path="/results" component={Results} />
+  <Route path="/results" component={ResultsContainer} />
   <Route path="/" component={Voting} />
 </Route>;
 
