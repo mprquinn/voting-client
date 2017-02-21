@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c35bb7d4daebb84bd860"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "0decf1186d7862dc2371"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -35114,12 +35114,16 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var pair = _immutable.List.of('Trainspotting', '28 Days Later');
+	var tally = (0, _immutable.Map)({ 'Trainspotting': 5, '28 Days Later': 4 });
 
 	exports.default = _react2.default.createClass({
 	  displayName: 'App',
 
 	  render: function render() {
-	    return _react2.default.cloneElement(this.props.children, { pair: pair });
+	    return _react2.default.cloneElement(this.props.children, {
+	      pair: pair,
+	      tally: tally
+	    });
 	  }
 	});
 
@@ -40513,11 +40517,37 @@
 	  displayName: 'Results',
 
 	  mixins: [_reactAddonsPureRenderMixin2.default],
+	  getPair: function getPair() {
+	    return this.props.pair || [];
+	  },
+	  getVotes: function getVotes(entry) {
+	    if (this.props.tally && this.props.tally.has(entry)) {
+	      return this.props.tally.get(entry);
+	    }
+	    return 0;
+	  },
 	  render: function render() {
+	    var _this = this;
+
 	    return _react2.default.createElement(
-	      'p',
-	      null,
-	      'Hello from the results page!'
+	      'div',
+	      { className: 'results' },
+	      this.getPair().map(function (entry) {
+	        return _react2.default.createElement(
+	          'div',
+	          { key: entry, className: 'entry' },
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            entry
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'voteCount' },
+	            _this.getVotes(entry)
+	          )
+	        );
+	      })
 	    );
 	  }
 	});
