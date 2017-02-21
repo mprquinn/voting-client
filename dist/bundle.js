@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "427f708b3de62dc4e994"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "a860981171c31fe9ca07"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -8354,8 +8354,8 @@
 	var routes = _react2.default.createElement(
 	  _reactRouter.Route,
 	  { component: _App2.default },
-	  _react2.default.createElement(_reactRouter.Route, { path: '/results', component: Results }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/', component: Voting })
+	  _react2.default.createElement(_reactRouter.Route, { path: '/results', component: _Results.ResultsContainer }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/', component: _Voting.VotingContainer })
 	);
 
 	_reactDom2.default.render(_react2.default.createElement(
